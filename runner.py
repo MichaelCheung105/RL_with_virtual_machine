@@ -1,3 +1,4 @@
+import numpy as np
 from environment import Environment
 from agent import Agent
 from sql_database import SqlDB
@@ -35,15 +36,15 @@ if __name__ == "__main__":
 
     # Initiate Experience Pool
     experience_pool_name = "exp_pool_1"
-    state_info = {'s1': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  's2': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  's3': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  'a': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  'r': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  'sp1': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  'sp2': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  'sp3': {'data_type': 'numeric', 'constraint': 'NULL'},
-                  'd': {'data_type': 'numeric', 'constraint': 'NULL'}
+    state_info = {'s1': {'data_type': 'float', 'constraint': 'NULL'},
+                  's2': {'data_type': 'float', 'constraint': 'NULL'},
+                  's3': {'data_type': 'float', 'constraint': 'NULL'},
+                  'a': {'data_type': 'float', 'constraint': 'NULL'},
+                  'r': {'data_type': 'float', 'constraint': 'NULL'},
+                  'sp1': {'data_type': 'float', 'constraint': 'NULL'},
+                  'sp2': {'data_type': 'float', 'constraint': 'NULL'},
+                  'sp3': {'data_type': 'float', 'constraint': 'NULL'},
+                  'd': {'data_type': 'float', 'constraint': 'NULL'}
                   }
     external_storage.create_table_as_experience_pool(table_name=experience_pool_name,
                                                      table_cols=state_info,

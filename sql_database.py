@@ -10,6 +10,7 @@ driver = '{ODBC Driver 17 for SQL Server}'
 class SqlDB:
     def __init__(self):
         cnxn = pyodbc.connect('DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+        self.cnxn = cnxn
         self.cursor = cnxn.cursor()
 
     def create_table_as_experience_pool(self, table_name: str, table_cols: dict, is_overwrite=False):
@@ -34,11 +35,14 @@ class SqlDB:
             print("Successfully dropped table: {0}".format(table_name))
             self.cursor.execute(create_table_string)
             print("Successfully created table: {0}".format(table_name))
+            self.cnxn.commit()
+            print("Table dropping and creation command committed")
 
     def insert_experience(self, table_name: str, experience_tuple: tuple):
         try:
             insert_row_string = "INSERT INTO {0} values {1}".format(table_name, str(experience_tuple))
             self.cursor.execute(insert_row_string)
+            self.cnxn.commit()
         except Exception as e:
             print("Fail to insert experience. See Exception\n")
             print(e)
