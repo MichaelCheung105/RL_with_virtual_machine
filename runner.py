@@ -14,7 +14,7 @@ class Runner:
     def start(self):
         state = self.env.init_state()
         total_episode = 100
-        for train_episode in range(total_episode):
+        for train_episode in range(1, total_episode+1):
             # Interact with environment
             action = self.agent.get_action(state)
             reward, next_state, done = self.env.step(action)
